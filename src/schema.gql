@@ -1,0 +1,25 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type UserGQL {
+  id: Int!
+  name: String!
+  email: String!
+  password: String!
+}
+
+type Query {
+  getUserById(id: Int!): UserGQL
+  getUsers: [UserGQL!]!
+}
+
+type Mutation {
+  createUser(createUserData: CreateUserDto!): UserGQL!
+}
+
+input CreateUserDto {
+  name: String!
+  email: String!
+  password: String!
+}
