@@ -5,10 +5,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
+import { AuthModule } from './auth/auth.module';
+import { ConfigModule } from './config/config.module';
 import { UserGQL } from './user/entities/user.entity';
 import { UserModule } from './user/user.module';
 import { UserResolver } from './user/user.resolver';
-import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -31,6 +32,8 @@ import { AuthModule } from './auth/auth.module';
     UserModule,
 
     AuthModule,
+
+    ConfigModule,
   ],
   controllers: [AppController],
   providers: [AppService, UserResolver],
