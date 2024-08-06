@@ -1,5 +1,7 @@
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 
+import { UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { CreateUserDto } from './dto/user.dto';
 import { UserGQL } from './entities/user.entity';
 import { UserService } from './user.service';
@@ -14,6 +16,14 @@ export class UserResolver {
     return this.userService.getUserById(id);
   }
 
+  @UseGuards(JwtAuthGuard)
+  @Query((returns) => UserGQL, { nullable: true })
+  getUserByEmail(@Args('email', { type: () => String }) email: string) {
+    console.log('email', email);
+    return this.userService.getUserByEmail(email);
+  }
+
+  @UseGuards(JwtAuthGuard)
   @Query((returns) => [UserGQL])
   getUsers() {
     return this.userService.getUsers();

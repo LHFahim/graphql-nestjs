@@ -9,17 +9,30 @@ type UserGQL {
   password: String!
 }
 
+type LoginResponseDto {
+  access_token: String!
+  user: UserGQL!
+}
+
 type Query {
   getUserById(id: Int!): UserGQL
+  getUserByEmail(email: String!): UserGQL
   getUsers: [UserGQL!]!
 }
 
 type Mutation {
   createUser(createUserData: CreateUserDto!): UserGQL!
+  login(loginInput: LoginInputDto!): LoginResponseDto!
+  register(registerInput: CreateUserDto!): UserGQL!
 }
 
 input CreateUserDto {
   name: String!
+  email: String!
+  password: String!
+}
+
+input LoginInputDto {
   email: String!
   password: String!
 }

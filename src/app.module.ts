@@ -8,6 +8,7 @@ import { AppService } from './app.service';
 import { UserGQL } from './user/entities/user.entity';
 import { UserModule } from './user/user.module';
 import { UserResolver } from './user/user.resolver';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -28,6 +29,8 @@ import { UserResolver } from './user/user.resolver';
     }),
 
     UserModule,
+
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService, UserResolver],
